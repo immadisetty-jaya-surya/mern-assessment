@@ -1,8 +1,8 @@
 import './index.css'
 import {faSearch,faShoppingCart,faLessThan, faGreaterThan} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-// import { Outlet } from 'react-router-dom'
-import Signup from '../Signup'
+import { Outlet } from 'react-router-dom'
+// import Signup from '../Signup'
 
 const Navbar = () => {
   let info = [
@@ -45,7 +45,7 @@ const Navbar = () => {
         <FontAwesomeIcon icon={faGreaterThan}/>
       </div>
       <div>
-        <Signup />
+        <Outlet />
       </div> 
     </div>
   )
