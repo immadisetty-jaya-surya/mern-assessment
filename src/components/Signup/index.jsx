@@ -1,17 +1,28 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link,/* useNavigate */ } from "react-router-dom"
 import Verification from "../Verification"
+import axios from "axios";
 // import Login from "../Login"
 
-const Signup = (history) => {
+const Signup = () => {
+    // const history = useNavigate()
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const [verified,setVerified] = useState(false)
+    const sendRequest = async ()=>{
+        const res = await axios.post('http://localhost:5000/api/Signup',{
+            name:name,email:email,password:password
+        }).catch((err)=>console.log(err));
+        // console.log(res);
+        return res.data
+    }
+
     const handleSubmit = (e) =>{
         e.preventDefault();
         setVerified(true)
-        history.push('./verify-email')
+        // history.push('./verify-email')
+        sendRequest()
     }
   return (
     <div>
@@ -35,7 +46,7 @@ const Signup = (history) => {
             </form>
             <p className="px-40 py-4">Have an Account? <Link to='../Login'>Login</Link> </p>
         </div>
-        ):(<Verification history={history} />)}
+        ):(<Verification />)}
     </div>
   )
 }
